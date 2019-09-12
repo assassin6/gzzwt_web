@@ -72,14 +72,6 @@ const upload=async (uploadInfo,callback)=> {
     }
 }
 
-const goTab=(tabName)=>{
-    if(window.rn){
-        rn.app.goTab(tabName);
-    }else {
-        let domain = location.origin || config.domain
-        window.location.href =`${domain}/professional.html?date=${config.version}`
-    }
-}
 
 export {
     openPage,
@@ -87,5 +79,4 @@ export {
     refresh,
     selectedPhotos,
     upload,
-    goTab
 }

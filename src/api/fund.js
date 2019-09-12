@@ -5,7 +5,7 @@ import request from "../utils/request";
 export const getFundAccountInfo=(params)=>request.get('fund/getAccountInfo',{params})
 
 //公积金查询缴存明细
-export const getFundDetail=(params) => request.get('fund/getFundDetail', {params})
+export const getFundDetail=(params) => request.get(`fund/getFundDetail/${params.year}`, {params})
 
 //查询网点区域 网点银行
 export const getAreaAndBankType=(params)=>request.get('fund/getAreaAndBankType',{params})
@@ -21,3 +21,6 @@ export const getAppointmentConfigDetail=(params)=>request.get('fund/getAppointme
 
 //预约信息点击确认(提交预约信息)
 export const saveAppointment=(params)=>request.get('fund/saveAppointment',{params})
+
+//查询最早的公积金缴存时间
+export const getFundMinTime=(params)=>request.get('fund/getFundMinTime',{params})

@@ -1,15 +1,20 @@
 const glob = require('glob')
-const pageConfig = require('./src/config/page.js')
-
+const pageConfig = require('./src/config/page/')
 const commonConfig = {
   template: 'public/index.html'
 }
-
+const TYPE = require('yargs-parser')(process.argv.slice(2))
 let pages = {}
-
 try {
   // 获得入口js文件，** 匹配0个或者多个文件夹
-  pages = getEntry(['./src/pages/**/index.js'])
+  if (TYPE.module) {
+    let paths = [`./src/pages/index/**/index.js`]
+    if (TYPE.module !== 'index')
+      paths.push(`./src/pages/${TYPE.module}/**/index.js`)
+    pages = getEntry(paths)
+  } else {
+    pages = getEntry([`./src/pages/**/index.js`])
+  }
 } catch (err) {
   pages = {}
   console.log('读取目录出错！')

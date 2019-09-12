@@ -1,18 +1,28 @@
 <template lang="pug">
     .index-wrapper
-        header.index-header.one-px-b
-            .index-header-wrapper
-                span.title 政务通
-                app-link.wrapper-message(:to="{name:'messageList'}" )
-                    span.icon-messages-set.img-message
-
+        app-link(:to="{name:''}")
+            span 民政业务
+        app-link(:to="{name:''}")
+            span 公积金业务
+        app-link(:to="{name:''}")
+            span 医院业务
+        app-link(:to="{name:''}")
+            span 学校业务
+        app-link(:to="{name:''}")
+            span 社保业务
+        app-link(:to="{name:''}")
+            span 社会综合业务
+        app-link(:to="{name:''}")
+            span 交通业务
+        app-link(:to="{name:''}")
+            span 用户体系业务
+        app-link(:to="{name:''}")
+            span 机动车业务
 
 </template>
 
 <script>
 import { pxtorem, imgPrefix } from "utils/filter";
-import { isIpx } from "utils/isTerminal";
-import { getSorce, login } from "../../api/";
 
 export default {
   name: "index",
@@ -24,8 +34,6 @@ export default {
     return {};
   },
   async created() {
-      await getSorce();
-    //await login();
   },
   components: {}
 };
@@ -37,60 +45,12 @@ export default {
     -webkit-transform: translate3d(0, 0, 0);
   }
 }
-
-.isIpx {
-  background: $backgroundColor;
-  padding-bottom: $warpperMargin;
-  height: 100vh;
-  padding-top: 92px;
-  overflow: hidden;
-}
-
-.noIpx {
-  background: $backgroundColor;
-  height: 100vh;
-  padding-top: 72px;
-  overflow: hidden;
-}
-
-.index-header {
-  background-color: white;
-  position: fixed !important;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: 20px 15px 0;
-  z-index: 999;
-
-  .index-header-wrapper {
-    @include wh(100%, 52);
-    @include flexRow(space-between, center);
-  }
-
-  .title {
-    @include font(18, $titleColor, bold);
-  }
-
-  .wrapper-message {
-    position: relative;
-    @include flexRow(center, center);
-
-    .img-message {
-      font-size: 20px;
-    }
-    .brige {
-      position: absolute;
-      color: red;
-      top: -10px;
-      right: 0px;
-      font-size: 25px;
+    .index-wrapper{
+        height: 100vh;
+        @include flexColum(center,center);
+        span{
+            padding: 10px;
+        }
     }
 
-    .label {
-      @include font(15, $titleColor, bold);
-      margin-top: 3px;
-      margin-left: 2px;
-    }
-  }
-}
 </style>

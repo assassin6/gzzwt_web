@@ -1,6 +1,5 @@
 const path = require('path')
 const px2rem = require('postcss-px2rem')
-const pagesConfig = require('./page.config.js')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
@@ -57,7 +56,7 @@ module.exports = {
       }
     }
   },
-  pages: pagesConfig,
+  pages: require('./page.config.js'),
   css: {
     loaderOptions: {
       less: {

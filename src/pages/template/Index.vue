@@ -13,6 +13,7 @@
     import {getVerifyCode} from '../../api'
     import {login} from '../../api/user'
     import {openPage} from "../../utils/jsBrige";
+
     export default {
         name: 'app',
         data() {
