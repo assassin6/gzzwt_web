@@ -1,0 +1,59 @@
+/**
+  * $description 规范变量库
+* $author 查大自考(zhanggx)
+* $time 2019/6/18(统一单位：px)
+**/
+/******************颜色规范********************/
+//颜色
+//主题颜色
+$themeColor: #ff6968;
+//背景颜色
+$backgroundColor: #f8f8f8;
+//边框颜色
+$borderColor: #eee;
+
+/********************字体********************/
+
+//标题1，例如：顶部tab
+$h1: 18px;
+//标题2，例如：用于内容区域块标题字体大小
+$h2: 17px;
+//标题3，例如：用于内容区域块副标题
+$h3: 15px;
+//标题颜色
+$titleColor: #101010;
+
+
+// 默认字体大小
+$defalutSize: 15px;
+//默认字体颜色
+$defalutColor: #333;
+
+
+//辅助性描述
+$auxiliarySize: 13px;
+//辅助字体颜色
+$auxiliaryColor: #ccc;
+
+//内容字体颜色
+$contentColor: #999;
+
+/******************头像规范********************/
+//大头像
+$bigHead: 74px;
+//中头像
+$midHead: 46px;
+//小头像
+$smallHead: 23px;
+
+/***************页面的边距**************/
+
+//整体区域内边距大小
+$warpperPadding: 10px;
+//整体区域外边距大小
+$warpperMargin: 10px;
+
+//列表内边距大小
+$listPadding: 10px;
+//列表外边距大小
+$listMargin: 10px;

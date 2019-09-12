@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  color: #333;
+}
+
+body {
+  background: #fff;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-size: 14px;
+  // -webkit-touch-callout: none;
+  // -webkit-user-select: none;
+  // -khtml-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+  color: #333;
+}
+
+a {
+  color: #333;
+}
+
+ul,
+li,
+dl,
+dd,
+dt,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+input {
+  appearance: none;
+  border: none;
+}

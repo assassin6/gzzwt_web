@@ -1,0 +1,40 @@
+@import "./var.scss";
+
+/**
+ * 设置字体
+ */
+@mixin font($fonSize:$defalutSize,$color: $defalutColor,$fonWeight:500) {
+  font-size: $fonSize+px;
+  color: $color;
+  font-weight: $fonWeight;
+}
+
+/**
+* 设置 wrapper 长度和宽度
+ */
+@mixin wh($width,$height) {
+  width: $width+px;
+  height: $height+px;
+}
+
+/**
+ * 设置圆形
+ */
+@mixin circular($width) {
+  @include wh($width, $width);
+  border-radius: $width/2+px;
+}
+
+@mixin flexRow($justifyContent:flex-start,$alignItems:flex-start) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+
+@mixin flexColum($justifyContent:flex-start,$alignItems:flex-start) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}

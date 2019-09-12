@@ -1,0 +1,41 @@
+@import "./1px.scss";
+@import "./font.scss";
+@import "./reset.scss";
+@import "./mixin.scss";
+@import "./normalize.scss";
+
+.flex-row{
+ display: flex;
+ flex-direction: row;
+}
+
+.flex-cloum{
+  display: flex;
+  flex-direction: column;
+}
+.flex-space-between{
+  justify-content: space-between;
+}
+
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ellipsis-2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.ellipsis-3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
