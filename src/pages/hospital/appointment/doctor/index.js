@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './Index.vue'
 import '@/pages/common'
 import appLink from '@/components/appLink.vue' // 页面跳转组件
-import { Loading, Toast } from 'vant'
+import {
+  Image,
+  Popup
+} from 'vant'
 
 const getQuery = () => {
   if (!location.href.split('?')[1]) return {}
@@ -19,8 +22,8 @@ const getQuery = () => {
 Vue.prototype.$query = getQuery() // 序列化query参数
 
 Vue.component('app-link', appLink)
-Vue.use(Loading)
-Vue.use(Toast)
+Vue.use(Image)
+Vue.use(Popup)
 
 new Vue({
   render: h => h(App)

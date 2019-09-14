@@ -4,7 +4,7 @@
             span 民政业务
         app-link(:to="{name:''}")
             span 公积金业务
-        app-link(:to="{name:''}")
+        app-link(:to={name:'hospital'})
             span 医院业务
         app-link(:to="{name:''}")
             span 学校业务

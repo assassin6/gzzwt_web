@@ -11,7 +11,7 @@ div
     app-link(v-for="item in data.doctors" :to="{name:'hospital/appointment/doctor',query:{doctorId:item.id}}")
       .doctor
         .doctorMes
-          img(:src="item.picUrl" alt="头像")
+          van-image(:src="item.picUrl" alt="头像" width='66' height="66")
           div
             .name
               span {{item.name}}
@@ -43,7 +43,6 @@ export default {
     };
   },
   mounted() {
-    this.getDoctors();
   },
   methods: {
     getDoctors() {
@@ -72,7 +71,10 @@ export default {
       return `${month}/${day}`;
     }
   },
-  components: {}
+  components: {},
+  async created(){
+    await this.getDoctors();
+  }
 };
 </script>
 <style lang="scss">

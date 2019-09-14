@@ -78,8 +78,11 @@ export default {
     }
   },
   mounted() {
-    this.getHospital();
-    getArea().then(res => {
+  },
+  components: {},
+  async created() {
+    await this.getHospital();
+    await getArea().then(res => {
       if (res.code !== 200) {
         alert("获取医院分区错误");
       } else {
@@ -95,7 +98,7 @@ export default {
         }
       }
     });
-    geDicData().then(res => {
+    await geDicData().then(res => {
       if (res.code !== 200) {
         alert("获取医院分类错误");
       } else {
@@ -111,8 +114,7 @@ export default {
         }
       }
     });
-  },
-  components: {}
+  }
 };
 </script>
 <style lang="scss" scoped>

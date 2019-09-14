@@ -16,3 +16,6 @@ export const getDoctors = (params) => request.post('hospital/getDoctors',{params
 
 //获取医生详情 预约号源
 export const getAppointmentConfig = (params) => request.get(`/hospital/getAppointmentConfig/${params.doctorId}`)
+
+//点击预约 查询预约时段配置及可预约数
+export const getAppointmentConfigDetail = params => request.get(`/hospital/getAppointmentConfigDetail/${params.id}/${params.time}/${params.amPm}`)

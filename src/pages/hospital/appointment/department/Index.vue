@@ -14,26 +14,28 @@ export default {
       items: []
     };
   },
-  mounted() {
-    getHospitalDepartments({ hospitalId: this.$query.hospitalId }).then(res => {
-      res.data.map((item, index) => {
-        let newItem = {
-          text: item.name,
-          id: index,
-          children: []
-        };
-        item.subLabels.map((child, id) => {
-          newItem.children.push({
-            text: child.name,
-            id,
-            code: child.code
+  mounted() {},
+  async created() {
+    await getHospitalDepartments({ hospitalId: this.$query.hospitalId }).then(
+      res => {
+        res.data.map((item, index) => {
+          let newItem = {
+            text: item.name,
+            id: index,
+            children: []
+          };
+          item.subLabels.map((child, id) => {
+            newItem.children.push({
+              text: child.name,
+              id,
+              code: child.code
+            });
           });
+          this.items.push(newItem);
         });
-        this.items.push(newItem);
-      });
-    });
+      }
+    );
   },
-  created() {},
   methods: {
     clickItem(data) {
       openPage({

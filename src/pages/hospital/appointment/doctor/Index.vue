@@ -2,7 +2,7 @@
 div
   .doctor
     .doctorMes
-      img(:src="data.picUrl" alt="头像")
+      van-image(:src="data.picUrl" alt="头像" height="66" width="66")
       div
         .name
           span {{data.name}}
@@ -22,9 +22,9 @@ div
           div
             span {{item.week}}
             span {{parseDate(item.time)}}
-          div(:class="item.amConfig?'viable':''" @click="item.amConfig?checkAppointment(item.time):''")
+          div(:class="item.amConfig?'viable':''" @click="item.amConfig?checkAppointment(item.time,0,item.week):''")
             span {{item.amConfig?'点击预约':''}}
-          div(:class="item.pmConfig?'viable':''" @click="item.pmConfig?checkAppointment(item.time):''")
+          div(:class="item.pmConfig?'viable':''" @click="item.pmConfig?checkAppointment(item.time,1,item.week):''")
             span {{item.pmConfig?'点击预约':''}}
   .expetise
     span.title 擅长领域
@@ -32,11 +32,22 @@ div
   .introduce
     span.title 医生简介
     span {{data.content}}
-  
+  van-popup(v-model="show" position="bottom" :style="{height:'50%'}")
+    .appointmentDate {{appointmentDate.time}} {{appointmentDate.week}} {{appointmentDate.amPm?'下午':'上午'}}
+    .pickDate
+      app-link( v-for="(item,index) in viableAppointment" :to="{name:'hospital/appointment/confirmAppointment'}")
+        div.viableTime
+          span {{item.startTime}}-{{item.endTime}}
+          span.viableNum 可约号源 {{item.num}}
+ 
+      
 </template>
 
 <script>
-import { getAppointmentConfig } from "@/api/hospital";
+import {
+  getAppointmentConfig,
+  getAppointmentConfigDetail
+} from "@/api/hospital";
 import moment from "@/utils/moment";
 export default {
   name: "app",
@@ -44,24 +55,20 @@ export default {
     return {
       data: {
         expetise: []
-      }
+      },
+      show: false,
+      appointmentDate: {
+        time: "", //搜索医生号源对应的日期 参数,
+        week: "",
+        amPm: ""
+      },
+      viableAppointment: [] //可约号源的时间段
     };
   },
-  mounted() {
-    getAppointmentConfig({ doctorId: this.$query.doctorId }).then(res => {
-      if (res.code !== 200) {
-        console.log("获取医生数据错误");
-      } else {
-        this.data = res.data;
-      }
-    });
-  },
+  mounted() {},
   methods: {
-    changeDate(date) {
-      //修改日期的条件 date的格式为 2019-09-11
-    },
     parseDate(date) {
-      //将日期改为 09/03 的格式 date 的格式为2019-09-03
+      //将日期改为 09-03 的格式 date 的格式为2019-09-03
       let newDate = new Date(date);
       let month =
         newDate.getMonth() >= 10
@@ -71,11 +78,31 @@ export default {
         newDate.getDate() >= 10 ? newDate.getDate() : `0${newDate.getDate()}`;
       return `${month}-${day}`;
     },
-    checkAppointment() {
-      console.log(1);
+    checkAppointment(time, amPm, week) {
+      //time 预约的日期 am 上午或者下午 0上午 1下午
+      this.show = !this.show;
+      this.appointmentDate = {
+        time,
+        week,
+        amPm
+      };
+      getAppointmentConfigDetail({ id: this.$query.doctorId, time, amPm }).then(
+        res => {
+          this.viableAppointment = res.data;
+        }
+      );
     }
   },
-  components: {}
+  components: {},
+  async created() {
+    await getAppointmentConfig({ doctorId: this.$query.doctorId }).then(res => {
+      if (res.code !== 200) {
+        console.log("获取医生数据错误");
+      } else {
+        this.data = res.data;
+      }
+    });
+  }
 };
 </script>
 <style lang="scss">
@@ -190,5 +217,45 @@ export default {
 .introduce {
   height: auto;
   border-bottom: none;
+}
+.appointmentDate {
+  text-align: center;
+  background-color: #ccc;
+  font-size: 12px;
+  line-height: 28px;
+}
+.pickDate {
+  height: calc(100% - 88px);
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  .app-link {
+    min-height: 40px;
+    width: 280px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    .viableTime{
+      width: 200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .app-link:last-child {
+    border: none;
+  }
+  .viableNum{
+    display: inline-block;
+    text-align: left;
+    width: 80px;
+    font-size: 12px;
+  }
 }
 </style>
