@@ -34,7 +34,7 @@
     "lodash-webpack-plugin": "^0.11.5",
     "node-sass": "^4.11.0",
     "postcss-px2rem": "^0.3.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.6.10",
